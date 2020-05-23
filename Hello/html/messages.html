@@ -1,0 +1,17 @@
+There are {{count}} messages
+
+
+<table border=1>
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>text</td>
+    </tr>
+    {% for msg in messages %}
+    <tr>
+        <td>{{msg.id}}</td>
+        <td>{{msg.name}}</td>
+        <td>{{msg.text}}</td>
+    </tr>
+    {% endfor %}
+</table>

@@ -21,5 +21,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('page/<pageid>',views.world)
+    path('page/<pageid>',views.world),
+    path('',views.form),
+    path('sent',views.sent),
+    path('messages',views.messages)
 ]
