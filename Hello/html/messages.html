@@ -1,17 +1,11 @@
-There are {{count}} messages
+There are {{count}} posts
 
-
-<table border=1>
-    <tr>
-        <td>id</td>
-        <td>name</td>
-        <td>text</td>
-    </tr>
+ 
     {% for msg in messages %}
-    <tr>
-        <td>{{msg.id}}</td>
-        <td>{{msg.name}}</td>
-        <td>{{msg.text}}</td>
-    </tr>
+       <h1>{{msg.name}}</h1>
+       <tr>
+           {{msg.text}}
+       </tr>
+       <hr>
     {% endfor %}
-</table>
+ 
