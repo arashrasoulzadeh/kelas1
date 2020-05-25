@@ -1,0 +1,23 @@
+ {% extends 'base.html' %}
+
+ {% block content %}
+      {% for post in posts %}
+      <div class="blog-post">
+        <h2 class="blog-post-title">
+          <a href='/page/{{post.id}}'>  
+          {{post.title}}
+        </a>
+
+        </h2>
+        <p class="blog-post-meta"><a href="#">{{post.author }}</a></p>
+            {{post.abstract | safe}}
+
+            <br>
+            
+      </div><!-- /.blog-post -->
+      {% endfor %}
+
+  {% endblock %}
+
+
+ 

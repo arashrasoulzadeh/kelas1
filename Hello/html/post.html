@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      <div class="blog-post">
+       <h2 class="blog-post-title">{{post.title}}</h2>
+       <p class="blog-post-meta"><a href="#">{{post.author }}</a></p>
+           {{post.text | safe}}
+
+           <br>
+      </div><!-- /.blog-post -->
+ 
+     <br>
+ <form method="post" action="">
+     {% csrf_token %}
+    <input name="name" placeholder="نام شما">
+    <input name="text" placeholder="نظر شما">
+    <input name="id" value="{{post.id}}" type="hidden">
+     <input type="submit" value="ارسال نظر" class="btn btn-success"/>
+ </form>
+
+
+ {% for comment in comments %}
+    <b>{{comment.author}}</b> : {{comment.text}}<br>
+ {% endfor %}
+
+
+
+ {% endblock %}
+
+

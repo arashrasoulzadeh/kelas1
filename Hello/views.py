@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from university.models import ContactUs
+from university.models import ContactUs,Post,PostCategory,Comment
 # Create your views here.
 
 def world(request,pageid):
@@ -27,4 +27,41 @@ def messages(request):
 	return render(request,'messages.html',{
 		'count':ContactUs.objects.count(),
 		'messages':ContactUs.objects.all()
+	})
+
+
+
+def index(request):
+	return render(request,'homepage.html',{
+		'posts':Post.objects.all(),
+		'categories':PostCategory.objects.all()
+	})
+
+
+
+def search(request):
+	query = request.GET.get('query','')
+	return render(request,'search.html',{
+		'posts':Post.objects.all().filter(text__contains=query),
+		'categories':PostCategory.objects.all()
+	})
+
+
+def page(request,pageid):
+
+
+	if request.method == 'POST':
+		name = request.POST.get('name','no-name')
+		text = request.POST.get('text','no-text')
+		id = request.POST.get('id')
+		comment = Comment(post_id=id,text=text,author=name)
+		comment.save()
+		pass
+
+
+
+	return render(request,'post.html',{
+		'post':Post.objects.all().filter(id=pageid)[0],
+		'categories':PostCategory.objects.all(),
+		'comments':Comment.objects.all().filter(post_id=pageid,is_reviewed=True).order_by('-id')
 	})
